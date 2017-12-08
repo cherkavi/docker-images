@@ -6,6 +6,9 @@ docker ps
 ### show all containers
 docker ps -a
 
+### run container with specific name
+docker run --name my_specific_name <name of image>
+
 ### information about docker itself
 docker info
 
