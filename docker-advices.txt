@@ -50,6 +50,12 @@ groupadd docker
 usermod -aG docker <username>
 service docker restart
 
+
+### docker running image information
+docker inspect 
+docker inspect -f '{{.HostConfig.PortBindings}}' loving_meitner 
+
+
 ### examples
 docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
 docker exec -it high_mclean /bin/bash
