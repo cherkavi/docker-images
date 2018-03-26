@@ -63,7 +63,8 @@ docker inspect -f '{{.HostConfig.PortBindings}}' loving_meitner
 
 ### pull image from repository 
 docker pull <image name>
-> docker pull mysql
+> image can be found: https://hub.docker.com/
+> example of command: docker pull mysql
 
 ### examples
 * docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
