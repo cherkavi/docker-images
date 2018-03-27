@@ -1,34 +1,33 @@
-## Docker
-
-### show all containers that are running
-docker ps
-
-### show all containers
-docker ps -a
-
-### run container with specific name
-docker run --name my_specific_name <name of image>
+Docker
+======
 
 ### information about docker itself
 docker info
 
-### join to executed container 
-docker attach <CONTAINER ID>
 
-### leave executing container
-just kill the terminal
+### how to skip typing "sudo" each time
+groupadd docker
+usermod -aG docker <username>
+service docker restart
 
-### stop executing container
-docker stop <CONTAINER ID>
 
-### docker remove all stopped containers
-docker rm `docker ps -a | awk -F ' ' '{print $1}'`
+Images
+------
 
-### assign static hostname to container (map hostname)
-* create network
-docker network create --subnet=172.18.0.0/16 docker.local.network
-* assign address with network
-docker run --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -it ubuntu bash
+### search image into registry
+docker search <text of search>
+
+### pull image from repository 
+docker pull <image name>
+> image can be found: https://hub.docker.com/
+> example of command: docker pull mysql
+
+### show all local images
+docker images --all
+
+
+## Run and Start 
+------
 
 ### map volume ( map folder )
 -v /tmp:/home/root/tmp 
@@ -36,37 +35,106 @@ docker run --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local 
 ### map multiply ports to current host
 -p 8030-8033:8030-8033/tcp  -p 8040:8040/tcp
 
-### run program inside container
-docker exec -it high_mclean /bin/bash
-
 ### run container in detached ( background ) mode, without console attachment to running process
 --detach
 -d=true
 
-### console output
-docker logs -f <CONTAINER ID>
+### run image with specific name
+docker run --name my_specific_name <name of image>
 
-### docker save/commit
-docker commit <CONTAINER ID> <new image name>
+### start stopped previously container
+docker start <CONTAINER ID>
+
+
+Inspection
+------
+
+### show all containers that are running
+docker ps
+
+### show all containers ( running, stopped, paused )
+docker ps -a
+
+### join to executed container 
+docker attach <CONTAINER ID>
+
+### docker log of container 
+### console output
+docker logs --follow --tail 25 <CONTAINER ID>
+
+### show processes from container 
+docker top <CONTAINER ID>
+
+### run program inside container and attach to process 
+docker exec -it <CONTAINER ID> /bin/bash
+
+### show difference with original image 
+docker diff <CONTAINER ID>
 
 ### show all layers command+size
-docker history --no-trunc 08d197d59e8b
-
-### how to skip typing "sudo" each time
-groupadd docker
-usermod -aG docker <username>
-service docker restart
+docker history --no-trunc <CONTAINER ID>
 
 ### docker running image information
 docker inspect 
-docker inspect -f '{{.HostConfig.PortBindings}}' loving_meitner 
+docker inspect -f '{{.HostConfig.PortBindings}}' <CONTAINER ID>
 
-### pull image from repository 
-docker pull <image name>
-> image can be found: https://hub.docker.com/
-> example of command: docker pull mysql
 
-### examples
+Save
+------
+### docker save/commit
+docker commit <CONTAINER ID> <new image name>
+
+### docker save/commit
+docker tag <CONTAINER ID> <TAG NAME[:TAG VERSION]>
+
+### docker export 
+docker save --output <output file name>.tar <CONTAINER ID>
+
+
+Stop and Pause 
+------
+
+### wait until container will be stopped 
+docker wait <CONTAINER ID>
+
+### stop executing container
+docker stop <CONTAINER ID>
+
+### pause/unpause executing container
+docker pause <CONTAINER ID>
+docker unpause <CONTAINER ID>
+
+### kill executing container
+docker kill <CONTAINER ID>
+
+### leave executing container
+just kill the terminal
+
+
+Remove and Clean 
+------
+### docker remove all containers
+docker rm `docker ps -a | awk -F ' ' '{print $1}'`
+
+### docker remove image
+docker rmi <IMAGE ID>
+docker rmi --force <IMAGE ID>
+
+
+Additional management
+------
+
+### assign static hostname to container (map hostname)
+* create network
+docker network create --subnet=172.18.0.0/16 docker.local.network
+* assign address with network
+docker run --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -it <CONTAINER ID> /bin/bash
+* check network
+docker inspect <CONTAINER ID> | grep -i NETWORK
+
+
+Examples
+------
 * docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
 * docker exec -it high_mclean /bin/bash
 * docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i  -p  50075:50075/tcp  -p 50090:50090/tcp sequenceiq/hadoop-docker /etc/bootstrap.sh -bash
