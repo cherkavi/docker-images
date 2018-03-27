@@ -132,6 +132,10 @@ docker run --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local 
 * check network
 docker inspect <CONTAINER ID> | grep -i NETWORK
 
+### UI manager
+docker pull portainer/portainer
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+> https://portainer.readthedocs.io
 
 Examples
 ------
