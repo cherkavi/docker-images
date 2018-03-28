@@ -32,6 +32,9 @@ docker images --all
 ### map volume ( map folder )
 -v /tmp:/home/root/tmp 
 
+### check volumes
+docker volume ls 
+
 ### map multiply ports to current host
 -p 8030-8033:8030-8033/tcp  -p 8040:8040/tcp
 
@@ -113,12 +116,20 @@ just kill the terminal
 
 Remove and Clean 
 ------
-### docker remove all containers
+### remove all containers
 docker rm `docker ps -a | awk -F ' ' '{print $1}'`
 
-### docker remove image
+### remove image
 docker rmi <IMAGE ID>
 docker rmi --force <IMAGE ID>
+
+### remove volumes ( unused )
+docker volume ls -qf dangling=true | xargs -r docker volume rm
+
+### delete 
+$ docker network ls  
+$ docker network ls | grep "bridge"   
+$ docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 
 
 Additional management
