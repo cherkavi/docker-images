@@ -1,4 +1,8 @@
 #!/bin/bash
+# https://hortonworks.com/downloads/#sandbox
+# https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/3/
+# https://hortonworks.com/tutorials/
+
 echo "Waiting for docker daemon to start up:"
 until docker ps 2>&1| grep STATUS>/dev/null; do  sleep 1; done;  >/dev/null
 docker ps -a | grep sandbox-hdp
