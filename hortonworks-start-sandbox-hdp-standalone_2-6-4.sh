@@ -10,7 +10,8 @@ docker ps -a | grep sandbox-hdp
 if [ $? -eq 0 ]; then
  docker start sandbox-hdp
 else
-docker pull hortonworks/sandbox-hdp-standalone:2.6.4
+#:2.6.4
+docker pull hortonworks/sandbox-hdp-standalone
 docker run --name sandbox-hdp --hostname "sandbox-hdp.hortonworks.com" --privileged -d \
 -p 15500:15500 \
 -p 15501:15501 \
