@@ -54,9 +54,13 @@ usermod -aG docker <username>
 service docker restart
 
 ### examples
+#### cloudera
 docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
-docker exec -it high_mclean /bin/bash
+
+#### hadoop
 docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i  -p  50075:50075/tcp  -p 50090:50090/tcp sequenceiq/hadoop-docker /etc/bootstrap.sh -bash
 
-
+#### MySQL/MariaDB
+docker run -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mariadb
+docker exec some-mariadb-docker-name sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
 
