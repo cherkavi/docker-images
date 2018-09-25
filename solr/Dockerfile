@@ -1,6 +1,8 @@
 # OS + Java7
 FROM dockerbase/java7
 
+# ENV http_proxy http://user:password@host:port
+# ENV https_proxy http://user:password@host:port
 
 # ------------------- SOLR ------------------
 
