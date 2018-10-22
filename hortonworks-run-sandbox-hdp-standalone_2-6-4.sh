@@ -3,7 +3,11 @@
 # https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/3/
 # https://hortonworks.com/tutorials/
 # https://hortonworks.com/tutorial/hadoop-tutorial-getting-started-with-hdp/
-
+# starting point: 127.0.0.1:8888 
+#
+# Ambari console: 127.0.0.1:4200 : root / hadoop
+# command: ambari-admin-password-reset
+#
 echo "Waiting for docker daemon to start up:"
 until docker ps 2>&1| grep STATUS>/dev/null; do  sleep 1; done;  >/dev/null
 docker ps -a | grep sandbox-hdp
