@@ -1,0 +1,21 @@
+# Use root/exampleRoot as user/password credentials
+version: '2'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: exampleRoot
+      # - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 3310:3306
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8088:8080
