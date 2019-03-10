@@ -1,0 +1,8 @@
+{
+  "port": 5000,
+  "title": "Zuse script server",
+  "access": {
+  	"admin_users": [ "172.17.0.1-d7bba1bc4dbc47ab" ]
+  }
+
+}

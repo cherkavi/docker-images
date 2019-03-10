@@ -1,0 +1,19 @@
+{
+  "port": 5000,
+  "address": "172.17.0.2",
+  "title": "My Script Server",
+  "access": {
+  	"allowed_users": [ "myname", "my_friend", "jack", "joe", "jihn" ],
+  	"admin_users": [ "buggy@gmail.com", "myname" ],
+  	"groups": {
+  		"dev": ["jack", "joe", "jihn"],
+  		"support": ["my_friend"],
+  		"all": ["@admin_users", "@dev", "@support", "alice"]
+  	},
+  	"trusted_ips": [ "192.168.0.1", "192.168.0.2" ]
+  },
+  "logging": {
+    "execution_file": "$DATE-$ID.log",
+    "execution_date_format": "%y-%m-%d_%H-%M"
+  }
+}

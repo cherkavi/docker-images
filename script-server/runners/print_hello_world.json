@@ -1,0 +1,13 @@
+{
+  "name": "print message",
+  "script_path": "/app/scripts/print_hello_world.sh",
+  "description": "just example of output",
+  "working_directory": "/app/samples",
+  "parameters": [
+    {
+      "name": "message",
+      "param": "-e",
+      "description": "message for output"
+    }
+  ]
+}
