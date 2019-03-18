@@ -6,3 +6,5 @@ virtual_env/bin/pip install wheel
 wget https://github.com/bugy/script-server/raw/master/requirements.txt
 virtual_env/bin/pip install -r requirements.txt
 virtual_env/bin/python3 launcher.py
+# run with specific config
+# virtual_env/bin/python3 launcher.py -f /home/me/configs/script-server.json
