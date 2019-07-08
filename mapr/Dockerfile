@@ -1,3 +1,10 @@
+# create user and group with the same names and uid and gid like on the cluster.
+# copy MAPR ticket for the user and set permissions to the ticket file for the runtime user.
+# run mapr-setup.sh and configure.sh scripts with the user and group names/ids.
+#
+# https://mapr.com/docs/61/AdvancedInstallation/UsingtheMapRPACC.html
+# https://mapr.com/docs/61/AdvancedInstallation/SettingUptheClient-ubuntu.html
+
 FROM ubuntu:16.04
 
 RUN apt-get update \
