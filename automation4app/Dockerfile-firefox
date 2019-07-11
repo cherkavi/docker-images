@@ -1,0 +1,53 @@
+# Build command line: 
+# ```bash
+# docker build --tag xvfb-firefox --file Dockerfile-firefox .
+# ```
+FROM ubuntu:16.04
+
+# Essential tools and xvfb
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    unzip \
+    curl \
+    xvfb
+
+# Firefox browser to run the tests
+RUN apt-get install -y firefox
+RUN apt-get install -y apt-utils 
+RUN apt-get install -y net-tools
+
+# Gecko Driver
+# ENV GECKODRIVER_VERSION 0.23.0
+# RUN wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIVER_VERSION/geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz \
+#  && rm -rf /opt/geckodriver \
+#  && tar -C /opt -zxf /tmp/geckodriver.tar.gz \
+#  && rm /tmp/geckodriver.tar.gz \
+#  && mv /opt/geckodriver /opt/geckodriver-$GECKODRIVER_VERSION \
+#  && chmod 755 /opt/geckodriver-$GECKODRIVER_VERSION \
+#  && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/geckodriver \
+#  && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/wires
+
+
+# python
+#RUN apt-get update && apt-get install -y \
+#    python \
+#    python-setuptools \
+#    python-pip
+
+# enable Xvfb
+ENV DISPLAY :20
+RUN Xvfb $DISPLAY -screen 0 1366x768x16 &
+# RUN Xvfb $DISPLAY -screen 0 1366x768x16 -nolisten tcp &
+
+RUN firefox "google.com"
+
+# python app to collaborate with container 
+# ```
+# from selenium import webdriver
+# driver = webdriver.Firefox()
+# driver.get("http://www.qxf2.com")
+# print driver.title
+# driver.quit()
+# ```
+
+
