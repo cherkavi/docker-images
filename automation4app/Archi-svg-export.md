@@ -55,6 +55,9 @@ do
  # Format SVG
  # xdotool key --window $each_window Tab Tab Down Down Down Down Return
  xdotool key --window $each_window Return
+ sleep 2
+ # exit from app
+ xdotool key --window $each_window alt+f x
 done 
 ```
 
