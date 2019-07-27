@@ -1,5 +1,7 @@
 # docker build --tag blackarch .
 # docker run -it blackarch mdcrack -s "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" -S 4 -M MD5 {hash code} > out.txt
+# docker run -it blackarch mdcrack -s '!#$%&*+,-./:;<=>\@?_ abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' -S 4 -M MD5 {hash code} > out.txt 
+
 
 FROM archlinux/base
 
