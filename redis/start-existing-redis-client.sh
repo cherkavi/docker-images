@@ -1,1 +1,1 @@
-docker start --interactive --tty redis-lab-cli
+docker start --interactive redis-lab-cli
