@@ -1,6 +1,7 @@
 #!/bin/sh
 
-if ! docker ps -a --filter "name=redis-lab" --format "{{.Names}}"
+started_container=`docker ps -a --filter "name=redis-lab" --format "{{.Names}}"`
+if [ -z "$started_container" ]
 then
     #
     # https://hub.docker.com/_/redis
