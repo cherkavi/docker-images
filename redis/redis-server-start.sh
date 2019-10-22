@@ -1,7 +1,6 @@
 #!/bin/sh
 
 started_container=`docker ps -a --filter "name=^redis-lab$" --format "{{.Names}}"`
-echo $started_container
 if [ -z "$started_container" ]
 then
     #
@@ -16,7 +15,6 @@ then
     # start without persistence
     # sudo docker run --publish 6379:6379 --name redis-lab --detach redis
 else
-    echo "attempt to start existing"
     sudo docker start redis-lab
     sleep 2
     docker ps  
