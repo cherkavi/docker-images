@@ -5,7 +5,7 @@ LOCAL_CONTAINER_PORT=6379
 IMAGE_DATA=`pwd dirname $0`"/data-ts"
 DOCKER_IMAGE_NAME="redislabs/redistimeseries"
 
-started_container=`docker ps -a --filter "name=$LOCAL_CONTAINER_NAME" --format "{{.Names}}"`
+started_container=`docker ps -a --filter "name=^$LOCAL_CONTAINER_NAME$" --format "{{.Names}}"`
 if [ -z "$started_container" ]
 then
     #
