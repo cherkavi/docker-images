@@ -20,8 +20,10 @@ java -jar swagger-codegen-cli-2.2.1.jar config-help -l python-flask
 java -jar swagger-codegen-cli-2.2.1.jar generate -h
 java -jar -DdebugOperations swagger-codegen-cli-2.2.1.jar generate -h
 
+
 java -jar -DdebugOperations swagger-codegen-cli-2.2.1.jar generate \
 --input-spec gateway/api/api.swagger.yml \
+--ignore-file-override=/path/to/ignore_file_list
 --lang python-flask --output /home/projects/temp/swagger --skip-overwrite -D supportPython2=false
 ```
 
