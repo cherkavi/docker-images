@@ -6,6 +6,7 @@ docker run -d -p 8090:8080 swaggerapi/swagger-editor
 
 ## [run codegenerator](https://github.com/swagger-api/swagger-codegen)
 ### documentation
+* https://openapi-generator.tech/docs/customization.html
 * https://github.com/swagger-api/swagger-codegen/blob/master/README.md
 * https://github.com/swagger-api/swagger-codegen/wiki/Server-stub-generator-HOWTO
 * https://github.com/swagger-api/swagger-codegen/wiki/API-client-generator-HOWTO
@@ -24,7 +25,7 @@ java -jar -DdebugOperations swagger-codegen-cli-2.2.1.jar generate -h
 java -jar -DdebugOperations swagger-codegen-cli-2.2.1.jar generate \
 --input-spec gateway/api/api.swagger.yml \
 --ignore-file-override=/path/to/ignore_file_list
---lang python-flask --output /home/projects/temp/swagger --skip-overwrite -D supportPython2=false
+--lang python-flask --output /home/projects/temp/swagger  -DmodelTests=false -D apiTests=false -DmodelDocs=false -D supportPython2=false
 ```
 
 ### additional flags 
