@@ -26,6 +26,10 @@ java -jar -DdebugOperations swagger-codegen-cli-2.2.1.jar generate \
 --input-spec gateway/api/api.swagger.yml \
 --ignore-file-override=/path/to/ignore_file_list
 --lang python-flask --output /home/projects/temp/swagger  -DmodelTests=false -D apiTests=false -DmodelDocs=false -D supportPython2=false
+
+# !!!IMPORTANT!!!
+# --ignore-file-override=/path/to/ignore_file_list
+# not working properly with version 2.4.9 - use only .swagger-codegen-ignore in destination folder
 ```
 
 ### additional flags 
