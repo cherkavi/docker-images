@@ -50,7 +50,7 @@ from INFORMATION_SCHEMA.COLUMNS where table_name = 'task_instance';
 
 -- print all success instances
 select * from task_instance where state in ('success')
+select * from dag_run
 
-select encode(executor_config, 'escape') from task_instance
-
+-- select encode(executor_config, 'escape') from task_instance
 ```
