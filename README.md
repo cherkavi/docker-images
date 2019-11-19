@@ -1,5 +1,13 @@
 [docker hub](https://hub.docker.com/search?q=&type=image)
 
+# for using predefined scripts in documentation properties
+update your ".bashrc" with next aliases   
+( or just update destination session )
+```sh
+export ROOT_DOCKER_IMAGES="/home/projects/docker-images"
+```
+
+
 # docker-images
 set of docker images for general purposes:
 
