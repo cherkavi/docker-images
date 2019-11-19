@@ -54,3 +54,10 @@ select * from dag_run
 
 -- select encode(executor_config, 'escape') from task_instance
 ```
+
+
+# configuration examples
+```
+sql_alchemy_pool_size = 5
+AIRFLOW__CORE__SQL_ALCHEMY_POOL_SIZE
+```
