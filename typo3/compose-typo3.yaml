@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: typo3
+      MYSQL_USER: typo3
+      MYSQL_PASSWORD: typo3
+      MYSQL_PORT: 3306
+
+  typo3:
+    depends_on:
+      - db
+    image: dkdde/typo3
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      DB_NAME: typo3
+      DB_USER: typo3
+      DB_PASS: typo3
+      DB_HOST: db
+      DB_PORT: 3306
+
+volumes:
+  db_data: 
+    driver_opts:
+      type: none
+      device: /home/projects/docker-images/typo3/data
+      o: bind
