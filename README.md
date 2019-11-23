@@ -7,6 +7,8 @@ update your ".bashrc" with next aliases
 export ROOT_DOCKER_IMAGES="/home/projects/docker-images"
 ```
 
+# collections
+* [bitnami collection](https://github.com/bitnami)
 
 # docker-images
 set of docker images for general purposes:
