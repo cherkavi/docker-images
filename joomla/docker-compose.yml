@@ -1,0 +1,43 @@
+version: '3'
+services: 
+  # https://hub.docker.com/_/mariadb
+  mariadb:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
+    volumes:
+      - ./database:/var/lib/mysql
+
+  # https://hub.docker.com/r/phpmyadmin/phpmyadmin/
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_PORT=${MYSQL_PORT}
+      - PMA_USER=${MYSQL_USER}
+      - PMA_PASSWORD=${MYSQL_PASSWORD}
+    depends_on: 
+      - mariadb
+
+  # https://hub.docker.com/_/joomla
+  joomla:
+    #image: joomla:3.6.2-apache-php7
+    image: joomla
+    ports:
+      - "8080:80"
+    environment:
+      - JOOMLA_DB_HOST=mariadb:${MYSQL_PORT}
+      - JOOMLA_DB_NAME=${MYSQL_DATABASE}
+      - JOOMLA_DB_USER=${MYSQL_USER}
+      - JOOMLA_DB_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./code:/var/www/html
+    depends_on: 
+      - mariadb
+
