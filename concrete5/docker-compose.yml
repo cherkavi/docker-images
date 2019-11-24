@@ -1,0 +1,24 @@
+db:
+  image: mariadb
+  restart: always
+  environment:
+  - MYSQL_ROOT_PASSWORD=root
+  - MYSQL_USER=concrete5
+  - MYSQL_PASSWORD=concrete5
+  - MYSQL_DATABASE=concrete5
+  # host volume
+  volumes:
+    - ./data/var/lib/mysql:/var/lib/mysql
+
+web:
+  image: chriswayg/concrete5.7
+  restart: always
+  ports:
+  - "8080:80"
+  - "8443:443"
+  links:
+  - db
+  # host volumes 
+  volumes:
+    - ./data/etc/apache2:/etc/apache2
+    - ./data/var/www/html:/var/www/html
