@@ -1,3 +1,7 @@
+tag:code  
+tag:tool  
+tag:generator  
+
 ## run editor
 ```sh
 docker pull swaggerapi/swagger-editor
