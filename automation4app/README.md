@@ -1,3 +1,5 @@
+tag:archimate  
+tag:architecture  
 # Archi tool doesn't have ability to work in headless mode and export files from "archimate" to "SVG", 
 # current workaround is working with docker container and blindless manipulation on virtual screen
 # to open file and export View to SVG
