@@ -8,7 +8,7 @@ git clone https://github.com/puckel/docker-airflow.git
 
 ```sh
 # start: database init, airflow scheduler, airflow webserver
-docker-compose -f docker-compose-LocalExecutor.yml up -d
+docker-compose -f docker-airflow/docker-compose-LocalExecutor.yml up -d
 ```
 
 ```sh
