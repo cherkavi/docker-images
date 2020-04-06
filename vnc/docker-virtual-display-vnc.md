@@ -25,7 +25,15 @@ docker run -it -p 5900:5900 -p 5901:5901 ubuntu-xfce4-vnc /bin/sh
 
 ---
 # start UI session, start vnc
-
+* x11
+```sh
+export DISPLAY=:0
+Xvfb $DISPLAY -screen 0 1920x1080x16 &
+sleep 1
+x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
+sleep 1
+```
+* xfce4
 ```sh
 ### start virtual display
 export DISPLAY=:0.0
@@ -47,3 +55,7 @@ x11vnc -display $DISPLAY &
 ```
 
 [vnc for linux](https://www.realvnc.com/en/connect/download/viewer/linux/)
+```sh
+sudo apt install xvnc4viewer
+```
+!!! don't use Remmina !!!
