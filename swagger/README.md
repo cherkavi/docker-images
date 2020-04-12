@@ -9,6 +9,8 @@ docker run -d -p 8090:8080 swaggerapi/swagger-editor
 ```
 swagger editor it is just a [JavaScript UI application](https://editor.swagger.io/)
 
+## [alternative web designer](https://stoplight.io/studio/)
+
 
 ## [run codegenerator](https://github.com/swagger-api/swagger-codegen)
 ### documentation
