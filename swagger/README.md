@@ -11,6 +11,14 @@ swagger editor it is just a [JavaScript UI application](https://editor.swagger.i
 
 ## [alternative web designer](https://stoplight.io/studio/)
 
+## [alternative designer](https://www.apicur.io/)
+```sh
+git clone https://github.com/Apicurio/apicurio-studio.git
+cd apicurio-studio/distro/docker-compose
+cat Readme.md
+```
+
+## [ready examples](https://app.swaggerhub.com/)
 
 ## [run codegenerator](https://github.com/swagger-api/swagger-codegen)
 ### documentation
