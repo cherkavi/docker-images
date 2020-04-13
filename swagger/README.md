@@ -18,6 +18,18 @@ cd apicurio-studio/distro/docker-compose
 cat Readme.md
 ```
 
+## run mock
+```sh
+docker rm openapi-mock
+docker run -it \
+    --name=openapi-mock \
+    -p 4010:4010 \
+    -v $(pwd)/my-own-model.yaml:/app/config.yaml \
+    stoplight/prism \
+    mock --dynamic --host 0.0.0.0 /app/config.yaml
+```
+
+
 ## [ready examples](https://app.swaggerhub.com/)
 
 ## [run codegenerator](https://github.com/swagger-api/swagger-codegen)
