@@ -10,3 +10,4 @@ usage
 build-container.sh
 run-container.sh
 ```
+![schema](https://i.postimg.cc/fyfcsW49/sqlite-docker-schema.png)
