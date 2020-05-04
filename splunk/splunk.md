@@ -8,6 +8,8 @@ additional parameters for start/stop container
 
 start/stop container
 ```bash
+docker rm splunk
+
 docker run -d \
     -p 9000:8000 \
     -e "SPLUNK_START_ARGS=--accept-license" \
