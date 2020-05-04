@@ -4,8 +4,6 @@
 
 additional parameters for start/stop container
 ```bash
-#    -v /local/path/for/persistence/etc:/opt/splunk/etc \
-#    -v /local/path/for/persistence/var:/opt/splunk/var \
 ```
 
 start/stop container
@@ -14,6 +12,8 @@ docker run -d \
     -p 9000:8000 \
     -e "SPLUNK_START_ARGS=--accept-license" \
     -e "SPLUNK_PASSWORD=cherkavi" \
+    -v $(pwd)/etc:/opt/splunk/etc \
+    -v $(pwd)/var:/opt/splunk/var \
     --name splunk \
     splunk/splunk:latest
 ```
