@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: namespace1-db
+  namespace: namespace1
+
+spec:
+  serviceName: namespace1-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: namespace1-db
+  template:
+    metadata:
+      name: namespace1-db
+      labels:
+        app: namespace1-db
+    spec:
+      securityContext:
+        fsGroup: 1001
+        runAsUser: 1001
+      containers:
+        - name: colosseum-postgres
+          image: docker.io/bitnami/postgresql:10.6.0
+          imagePullPolicy: "Always"
+          env:
+            - name: POSTGRESQL_USERNAME
+              value: master_user
+
+            - name: POSTGRESQL_PASSWORD
+              value: master_password
+
+            - name: POSTGRESQL_DATABASE
+              value: grafana_db
+
+          ports:
+            - name: postgresql
+              containerPort: 5432
+          volumeMounts:
+            - name: namespace1-db-data
+              mountPath: /bitnami/postgresql
+  volumeClaimTemplates:
+    - metadata:
+        name: namespace1-db-data
+        namespace: namespace1
+        annotations:
+          volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+      spec:
+        storageClassName: "managed-nfs-storage"
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
