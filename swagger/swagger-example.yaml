@@ -1,0 +1,148 @@
+openapi: 3.0.0
+info:
+  title: Dashboard
+  description: simple example of collaboration with server
+  version: 0.1.0
+
+servers:
+  - url: http://api.example.com/v1
+    description: AWS main server
+
+
+paths:
+  /userAll:
+    get:
+      summary: get all users
+      description: return all users from DB
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegistrationCard'
+                  
+  /user:                
+    post:
+      summary: update user information
+      description: update full information about user
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string  
+    
+    put:
+      summary: create new user 
+      description: just a user creation with full information 
+      parameters: 
+      - in: query
+        name: body
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/components/schemas/RegistrationCard"        
+      responses:
+        '200':    # status code
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+                  
+components:
+  schemas:
+    RegistrationCard:
+      title: information about customer
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 3
+          maxLength: 20
+        surname:
+          type: string
+          minLength: 3
+          maxLength: 20
+        place:
+          $ref: '#/components/schemas/Location'
+        contact:
+          type: array
+          items:
+            $ref: '#/components/schemas/Connection'
+            
+      required: 
+        - name
+        - surname
+        - place
+        - contact
+
+  
+    Connection:
+      title: one of the way how to connect with customer
+      type: object
+      properties:
+        email: 
+          description: e-mail of customer
+          type: string
+          format: email
+          minLength: 7
+          maxLength: 30
+
+        phone:
+          type: string
+          minLength: 13
+          maxLength: 20
+          example: "+38 050 168 00 00"
+
+        messenger:
+          type: array
+          items:
+            type: string
+            format: string            
+            enum:
+              - "viber"
+              - "whatsup"
+              - "telegram"
+          example: ["viber", "whatsup"]
+
+      required: 
+        - phone
+
+    Location:
+      title: Point when customer can be picked up 
+      type: object
+      properties:
+        region:
+          type: string
+          format: string
+          example: "D1"
+          enum: 
+            - "D1"
+            - "D2"
+            - "D3"
+            - "D4"
+            - "D5"
+            - "D6"
+            - "D7"
+            - "D8"
+        city:
+          type: string
+          format: string
+          example: "Berlin"
+          minLength: 3
+          maxLength: 20
+      required: 
+        - region
+        - city
+      
