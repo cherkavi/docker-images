@@ -1,5 +1,11 @@
 # Use root/exampleRoot as user/password credentials
-version: '2'
+version: '3.4'
+
+volumes:
+  mysql_volume:
+    name: ${DOCKER_MYSQL_DB_VOLUME}
+    external: false
+
 
 services:
 
@@ -17,7 +23,7 @@ services:
     ports:
       - 3310:3306
     volumes:
-      - ./mysqldata:/var/lib/mysql
+      - mysql_volume:/var/lib/mysql
 
   adminer:
     image: adminer
