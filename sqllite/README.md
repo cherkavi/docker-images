@@ -8,8 +8,7 @@ In case of writing, a single write to the database locks the database for a shor
 usage example
 ```sh
 PATH_TO_DB="/home/projects/xing/database/messages.db"
-CONTAINER_NAME="messages"
-./build-container.sh $CONTAINER_NAME
-./run-container-db-path.sh  $CONTAINER_NAME $PATH_TO_DB
+./build-container.sh
+./run-container-db-path.sh $PATH_TO_DB
 ```
 ![schema](https://i.postimg.cc/fyfcsW49/sqlite-docker-schema.png)

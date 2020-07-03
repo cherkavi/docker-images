@@ -1,3 +1,3 @@
 #!/usr/bin/bash
-container_name=${1:-"sqlite"}  
+container_name="sqllite-browser"
 docker build --tag $container_name .
