@@ -5,9 +5,11 @@ Multiple processes can have the same SQLite database open at the same time with 
 In case of writing, a single write to the database locks the database for a short time, nothing, even reading, can access the database file at all.
 ```
 
-usage
+usage example
 ```sh
-build-container.sh
-run-container.sh
+PATH_TO_DB="/home/projects/xing/database/messages.db"
+CONTAINER_NAME="messages"
+./build-container.sh $CONTAINER_NAME
+./run-container-db-path.sh  $CONTAINER_NAME $PATH_TO_DB
 ```
 ![schema](https://i.postimg.cc/fyfcsW49/sqlite-docker-schema.png)
