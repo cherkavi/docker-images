@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb
+    command: --max-allowed-packet=64MB
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 3310:3306
+    env_file:
+      - ./db.env
+
+  db_admin:
+    image: adminer
+    restart: always
+    ports:
+      - 9090:8080
+    env_file:
+      - ./db.env
+
+  app:
+    image: matomo
+    restart: always
+    volumes:
+#     - ./config:/var/www/html/config
+#     - ./logs:/var/www/html/logs
+      - matomo:/var/www/html
+    environment:
+      - MATOMO_DATABASE_HOST=db
+      - VIRTUAL_HOST=
+    env_file:
+      - ./db.env
+    ports:
+      - 8080:80
+
+volumes:
+  db:
+  matomo:
