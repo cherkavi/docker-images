@@ -16,12 +16,10 @@ docker run \
 -d -p 9999:8888 \
 -e GRANT_SUDO=yes \
 -e RESTARTABLE=yes  \
--e SSH_USER=my_user \
--e SSH_PAWW=my_pass \
 -v $(pwd):/home/jovyan/work \
 --name jupyter-notebook \
 jupyter/scipy-notebook:17aba6048f44 \
-start-notebook.sh  --NotebookApp.token='' --allow-root
+start-notebook.sh  --NotebookApp.token=''
 ```
 
 run jupyter without password, run jupyter without token, root user
@@ -36,8 +34,6 @@ docker run  \
 -e NB_GID=100 \
 -e GRANT_SUDO=yes \
 -e RESTARTABLE=yes  \
--e SSH_USER=my_user \
--e SSH_PAWW=my_pass \
 -v $(pwd):/home/jovyan/work \
 --name jupyter-notebook \
 jupyter/scipy-notebook:17aba6048f44 \
