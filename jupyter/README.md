@@ -1,5 +1,5 @@
-[image official documentation](https://jupyter-docker-stacks.readthedocs.io/en/latest/)
-[jupyter config](https://jupyter-notebook.readthedocs.io/en/stable/config.html)
+[image official documentation](https://jupyter-docker-stacks.readthedocs.io/en/latest/)  
+[jupyter config](https://jupyter-notebook.readthedocs.io/en/stable/config.html)  
 
 
 possible images:
