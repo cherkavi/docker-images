@@ -14,8 +14,23 @@ docker-compose -f docker-airflow/docker-compose-LocalExecutor.yml up -d
 ```
 
 ```sh
+x-www-browser http://localhost:8080/admin/
+```
+
+```sh
+# folder with DAGs ( small examples also there )
+cd docker-airflow/dags
+
+#        !!! switch DAG ON !!! after execution 
+```
+
+
+```sh
 # connect to working airflow
 docker exec -it docker-airflow_webserver_1 /bin/bash
+
+# check log of DAG
+vim ~/logs/scheduler/latest/hello_world.py.log
 
 # interact with airflow
 export AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
