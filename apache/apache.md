@@ -5,7 +5,7 @@ to start apache server and point out to current folder
 # -p 9443:8443 \
 # -p 9090:8080 \
 docker rm apache
-docker run --name apache -v $(pwd):/app -p 9090:8080 bitnami/apache:latest
+docker run --name apache --rm -v $(pwd):/app -p 9090:8080 bitnami/apache:latest
 ```
 
 ```
