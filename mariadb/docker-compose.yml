@@ -24,6 +24,8 @@ services:
       - 3310:3306
     volumes:
       - mysql_volume:/var/lib/mysql
+      # for init scripts, will be consumed/imported during start
+      - ./mysql/scripts/:/docker-entrypoint-initdb.d/
 
   adminer:
     image: adminer
