@@ -12,6 +12,7 @@ services:
   db:
     image: mariadb
     restart: always
+    container_name: app_mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -30,5 +31,6 @@ services:
   adminer:
     image: adminer
     restart: always
+    container_name: app_adminer
     ports:
       - 8088:8080
