@@ -1,0 +1,9 @@
+FROM jenkins/jenkins:lts-jdk11
+
+USER root
+
+RUN apt-get update -y \
+    && apt-get install -y python3-pip sshpass apt-utils \
+    && pip install ansible
+
+USER jenkins

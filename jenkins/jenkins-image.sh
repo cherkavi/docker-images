@@ -1,13 +1,24 @@
+#!/bin/bash
 
+if [ -z "$JENKINS_IMAGE_NAME" ]; then
+    JENKINS_IMAGE_NAME=jenkins/jenkins:lts-jdk11
+fi
 
-started_container=`docker ps -a --filter "name=^jenkins-server$" --format "{{.Names}}"`
-if [ -z "$started_container" ]
+echo "using jenkins container: $JENKINS_IMAGE_NAME"
+
+JENKINS_CONTAINER_NAME=jenkins-server
+
+started_container=`docker ps -a --format "{{.Names}}" | grep $JENKINS_CONTAINER_NAME `
+
+if [[ ${started_container} == "" ]]
 then
-  docker run -p 8080:8080 -p 50000:50000 -v `pwd dirname $0`/data:/var/jenkins_home  --name jenkins-server  jenkins/jenkins:lts
-  # docker run --user root -p 8080:8080 -p 50000:50000 -v `pwd dirname $0`/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
-  # /var/jenkins_home/secrets/initialAdminPassword
+    echo "create new container"
+    docker run -p 8080:8080 -p 50000:50000 -v `pwd dirname $0`/data:/var/jenkins_home  --name $JENKINS_CONTAINER_NAME  $JENKINS_IMAGE_NAME
+    # docker run --user root -p 8080:8080 -p 50000:50000 -v `pwd dirname $0`/jenkins_home:/var/jenkins_home $JENKINS_IMAGE_NAME
+    # /var/jenkins_home/secrets/initialAdminPassword
 else
-  sudo docker start jenkins-server
-  sleep 3
-  docker ps
+    echo "start existing container"
+    docker start $JENKINS_CONTAINER_NAME
+    sleep 3
+    docker ps
 fi
