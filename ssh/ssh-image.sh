@@ -1,6 +1,8 @@
-# docker run --name ssh -d -p 2200:22 -e SSH_USERPASS=secret fedora/ssh
-docker run -d -e SSH_USERPASS=secret fedora/ssh
+SSH_IMAGE_NAME=ssh-server
+SSH_PASS=secret
+SSH_IMAGE_NAME=fedora/ssh
 
-# docker inspect <image> | grep IP
-# ssh -p 2200 user@172.17.0.2
+docker run --name $SSH_IMAGE_NAME -d -p 2200:22 -e SSH_USERPASS=$SSH_PASS $SSH_IMAGE_NAME
+
+# docker run -d -e SSH_USERPASS=$SSH_PASS $SSH_IMAGE_NAME
 
