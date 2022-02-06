@@ -19,7 +19,9 @@ show databases;
 ```
 
 ## setup git after start
-http://localhost:3000/install
+```shell
+x-www-browser http://localhost:3000/install
+```
 * mysql
 * user: root
 * pass: root

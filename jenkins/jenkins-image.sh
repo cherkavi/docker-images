@@ -10,10 +10,9 @@ JENKINS_CONTAINER_NAME=jenkins-server
 
 started_container=`docker ps -a --format "{{.Names}}" | grep $JENKINS_CONTAINER_NAME `
 
-if [[ ${started_container} == "" ]]
-then
+if [[ ${started_container} == "" ]]; then
     echo "create new container"
-    docker run -p 8080:8080 -p 50000:50000 -v `pwd dirname $0`/data:/var/jenkins_home  --name $JENKINS_CONTAINER_NAME  $JENKINS_IMAGE_NAME
+    docker run -p 8080:8080 -p 50000:50000 -v `pwd dirname $0`/data:/var/jenkins_home --network="host" --name $JENKINS_CONTAINER_NAME  $JENKINS_IMAGE_NAME
     # docker run --user root -p 8080:8080 -p 50000:50000 -v `pwd dirname $0`/jenkins_home:/var/jenkins_home $JENKINS_IMAGE_NAME
     # /var/jenkins_home/secrets/initialAdminPassword
 else
