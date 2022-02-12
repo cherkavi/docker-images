@@ -1,0 +1,6 @@
+export AIRFLOW_HOME=/home/ubuntu/airflow
+export PATH=$PATH:/home/ubuntu/.local/bin
+
+nohup airflow webserver -p {{ lookup('env','AIRFLOW_PORT') | default("8080") }} --pid $AIRFLOW_HOME/airflow-webserver.pid > $AIRFLOW_HOME/airflow-webserver.log 2>&1 &
+nohup airflow scheduler --pid $AIRFLOW_HOME/airflow-scheduler.pid > $AIRFLOW_HOME/airflow-scheduler.log 2>&1 &
+nohup airflow celery flower -p {{ flower_port | default("8081")}}  > $AIRFLOW_HOME/airflow-celery-flower.log 2>&1 &

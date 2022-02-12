@@ -1,0 +1,3 @@
+ps aux | grep airflow | grep webserver | awk '{print $14}' | grep webserver
+ps aux | grep airflow | grep scheduler | awk '{print $15}'
+ps aux | grep airflow | grep flower | awk '{print $14}'

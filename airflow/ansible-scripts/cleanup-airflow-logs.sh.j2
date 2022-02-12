@@ -1,0 +1,29 @@
+# airflow task execution
+threshold=$(date +'%Y%m%d' --date="4 day ago")
+find /home/ubuntu/airflow/logs | grep "202[0-9]-[0-1][0-9]-[0-3][0-9]T" | grep -v "[0-9].log" | while read each_file
+do
+    file_date=$(echo $each_file | awk -F '/' '{print $8}' | awk -F 'T' '{print $1}' | sed -r 's/[-]+//g')
+    echo "$threshold > $file_date"
+    if [[ $threshold > $file_date ]]
+    then
+        echo "delete $each_file"
+        rm -rf $each_file
+    else
+        echo "skip fresh $each_file"
+    fi 
+done
+
+# scheduler 
+find /home/ubuntu/airflow/logs/scheduler | grep "202[0-9]-[0-1][0-9]-[0-3][0-9]" | grep -v "\.log" | while read each_file
+do
+    file_date=$(echo $each_file | awk -F '/' '{print $7}' |  sed -r 's/[-]+//g')
+    echo "$threshold > $file_date"
+    if [[ $threshold > $file_date ]]
+    then
+        echo "delete $each_file"
+        rm -rf $each_file
+    else
+        echo "skip fresh $each_file"
+    fi 
+done
+

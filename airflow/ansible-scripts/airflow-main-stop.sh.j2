@@ -1,0 +1,9 @@
+export AIRFLOW_HOME=/home/ubuntu/airflow
+
+ps aux | grep airflow | grep webserver | awk '{print $2}' | xargs -I{} kill -15 {} || echo "webserver removed"
+rm $AIRFLOW_HOME/airflow-webserver.pid || echo "not exists"
+
+ps aux | grep airflow | grep scheduler | awk '{print $2}' | xargs -I{} kill -15 {} || echo "scheduler removed"
+rm $AIRFLOW_HOME/airflow-scheduler.pid || echo "not exists"
+
+ps aux | grep airflow | grep flower | awk '{print $2}' | xargs -I{} kill -15 {} || echo "flower removed"
