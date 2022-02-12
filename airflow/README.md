@@ -26,7 +26,6 @@ cd docker-airflow/dags
 #        !!! switch DAG ON !!! after execution 
 ```
 
-
 ```sh
 # connect to working airflow
 docker exec -it docker-airflow_webserver_1 /bin/bash
@@ -48,7 +47,25 @@ airflow list_dags
 airflow trigger_dag -c '{"p1":113}' test1
 ```
 
-# some sql collaboration 
+## create polygon for source code
+```sh
+# install module
+pip3 install virtualenv
+
+# create env variable
+python3 -m virtualenv venv
+
+# activate
+source venv/bin/activate
+
+# install airflow 
+pip3 install apache-airflow
+
+# exit from virtual environment
+deactivate
+```
+
+## some sql collaboration 
 Admin->Connections->"postgres_default"
 ```properties
 conn Id=postgres_default
@@ -78,7 +95,7 @@ select * from dag_run
 ```
 
 
-# configuration examples
+## configuration examples
 ```
 sql_alchemy_pool_size = 5
 AIRFLOW__CORE__SQL_ALCHEMY_POOL_SIZE
