@@ -40,6 +40,8 @@ export AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@pos
 ```sh
 # connect to working airflow
 docker exec -it docker-airflow_webserver_1 sh -c "/entrypoint.sh /bin/bash"
+# get connections
+airflow connections --list
 ```
 
 ```sh
