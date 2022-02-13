@@ -9,6 +9,10 @@ tag:batch
 ```sh
 git clone https://github.com/puckel/docker-airflow.git
 ```
+manual build container in case of changes in airflow.cfg
+```sh
+docker build --tag puckel/docker-airflow:1.10.9 -f docker-airflow/Dockerfile
+```
 
 ```sh
 # start: database init, airflow scheduler, airflow webserver
