@@ -8,3 +8,5 @@ manual start
 ```sh
 docker run --entrypoint="" --interactive --tty apache/airflow:1.10.10-python3.7  /bin/sh 
 ```
+
+[https://github.com/bitnami/bitnami-docker-airflow](usage example)
