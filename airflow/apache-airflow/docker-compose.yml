@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+    postgres:
+        image: postgres:9.6
+        container_name: airflow_postgres
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+
+    webserver:
+        image: apache/airflow:1.10.10-python3.7
+        container_name: airflow_webserver
+        restart: always
+        depends_on:
+            - postgres
+        environment:
+            - AIRFLOW_HOME=/opt/airflow
+            - AIRFLOW__CORE__LOAD_EXAMPLES=False
+            - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow_postgres_db:5432/airflow
+            - AIRFLOW__CORE__EXECUTOR="LocalExecutor"
+            - AIRFLOW_CONFIG=/opt/airflow/config/airflow.cfg
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+        volumes:
+            - ./config:/opt/airflow/config
+            - ./dags:/opt/airflow/dags
+            - ./logs:/opt/airflow/logs
+            # - ./plugins:/usr/local/airflow/plugins
+        ports:
+            - "8080:8080"
+        # command: ["airflow", "webserver"]
+        command: ["sleep", "3600"]

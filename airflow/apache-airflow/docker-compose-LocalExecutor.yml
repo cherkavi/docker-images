@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+    airflow_postgres_db:
+        image: postgres:9.6
+        container_name: airflow_postgres
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+
+    airflow_webserver:
+        image: apache/airflow:2.2.3
+        container_name: airflow_webserver
+        restart: "no"
+        depends_on:
+            - airflow_postgres_db
+        environment:
+            - AIRFLOW_HOME=/opt/airflow
+            - AIRFLOW__CORE__LOAD_EXAMPLES=False
+            - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow_postgres_db:5432/airflow
+            - AIRFLOW__CORE__EXECUTOR="LocalExecutor"
+            - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
+            - AIRFLOW__CORE__FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            # - AIRFLOW__CORE__SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
+            - AIRFLOW_CONFIG=/opt/airflow/config/airflow.cfg
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+        volumes:
+            - ./config:/opt/airflow/config
+            - ./dags:/opt/airflow/dags
+            - ./logs:/opt/airflow/logs
+            # - ./plugins:/usr/local/airflow/plugins
+        ports:
+            - "8080:8080"
+        # entrypoint: ["/opt/airflow/config/entrypoint.sh"]
+        # command: /opt/airflow/config/entrypoint.sh
+        # command: ["sleep", "3600"]
+        # command: ["standalone"]
+      
+        # entrypoint: ["/opt/airflow/config/entrypoint.sh"]
+        command: ["standalone"]
