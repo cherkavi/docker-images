@@ -1,0 +1,16 @@
+{
+    "conf": {
+        "request_body": {
+            "logger_time": 1645297763940859600,
+            "session_id": "2d7a8321-e2c4-47f9-ad02-017f1371ca73",
+            "marker_type": [
+                "test_marker"
+            ],
+            "comment": "123",
+            "marker_source": "DATA_PORTAL",
+            "created_by": "cherkavi",
+            "status": "UNCATEGORIZED"
+        }
+    },
+    "dag_run_id": "manual_data_api_call_2022-02-20-09:26:48:1645345657"
+}

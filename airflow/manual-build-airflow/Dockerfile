@@ -36,8 +36,15 @@ ENV AIRFLOW__CORE__SECRET_KEY=b501152303a0a93a4fa27d3be2099b178ce3127d8b884e52ec
 ENV AIRFLOW__CORE__FERNET_KEY=uxSHU90HfSCB1pMCFCw31uxrw8fJCPKLdkfkYc5x8mc=
 
 EXPOSE 8080
-WORKDIR ${AIRFLOW_HOME}
+
+WORKDIR /opt/airflow
+
+# >>> airflow initdb
+RUN airflow db init
+
+# create airflow user 
+RUN airflow users  create --role Admin --username vitalii --email vitalii.cherkashyn@gmail.com --firstname Vitalii --lastname Cherkashyn --password vitalii
 
 # airflow webserver & scheduler
-ENTRYPOINT ["/opt/airflow/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 
