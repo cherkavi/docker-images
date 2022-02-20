@@ -9,6 +9,10 @@ tag:batch
 ```sh
 git clone https://github.com/puckel/docker-airflow.git
 ```
+manual build container in case of changes in airflow.cfg
+```sh
+docker build --tag puckel/docker-airflow:1.10.9 -f docker-airflow/Dockerfile
+```
 
 ```sh
 # start: database init, airflow scheduler, airflow webserver
@@ -40,6 +44,8 @@ export AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@pos
 ```sh
 # connect to working airflow
 docker exec -it docker-airflow_webserver_1 sh -c "/entrypoint.sh /bin/bash"
+# get connections
+airflow connections --list
 ```
 
 ```sh
