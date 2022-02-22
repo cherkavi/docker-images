@@ -77,7 +77,7 @@ def create_marker(**context):
     print(f"request body: {request_body}")
     connection_data_api = BaseHook.get_connection(CONNECTION_ID_DATA_API)    
     url: str = f"{connection_data_api.host}/marker/v1/markers"
-    headers = { "Authorization": f"Bearer {obtain_keycloak_token()}", "accept": "application/json", "Content-Type": "application/json"}
+    headers = { "Cookie": f"kc-access={obtain_keycloak_token()}", "accept": "application/json", "Content-Type": "application/json"}
     try:
         r = requests.post(url, headers=headers, data=request_body)
         if not (200 <= r.status_code <300):

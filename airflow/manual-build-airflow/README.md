@@ -40,20 +40,23 @@ docker exec  --interactive --tty airflow_custom_local /bin/bash
 ## REST api call
 ```sh
 AIRFLOW_URL="http://localhost:8080"
-# DAG_NAME="data_api_call"
-DAG_NAME="keycloak_dataapi_call"
 AIRFLOW_USER=vitalii
 AIRFLOW_PASSWORD=vitalii
 
-ENDPOINT="$AIRFLOW_URL/api/v1/dags/$DAG_NAME/dagRuns"
 ## empty body
 # BODY="{\"conf\":{},\"dag_run_id\":\"$DAG_RUN_ID\"}"
-## body with parameters
-# ACCOUNT_ID=1012;FILENAME=some/path/to/file
-# BODY="{\"conf\":{\"account_id\":\"$ACCOUNT_ID\",\"filename\":\"$1\"},\"dag_run_id\":\"$DAG_RUN_ID\"}"
 
+# call with body 
+DAG_NAME="data_api_call"
+ENDPOINT="$AIRFLOW_URL/api/v1/dags/$DAG_NAME/dagRuns"
 DAG_RUN_ID="manual_data_api_call_"`date +%Y-%m-%d-%H:%M:%S:%s`; echo $DAG_RUN_ID
+ACCOUNT_ID=1012
+BODY="{\"conf\":{\"account_id\":\"$ACCOUNT_ID\",\"filename\":\"$1\"},\"dag_run_id\":\"$DAG_RUN_ID\"}"
+curl -H "Content-Type: application/json" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT	
 
+# call with external file
+DAG_NAME="keycloak_dataapi_call"
+ENDPOINT="$AIRFLOW_URL/api/v1/dags/$DAG_NAME/dagRuns"
 curl -H "Content-Type: application/json" --data-binary @request-example.json -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT	
 ```
 

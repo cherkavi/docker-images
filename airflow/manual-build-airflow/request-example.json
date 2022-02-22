@@ -1,16 +1,27 @@
 {
     "conf": {
         "request_body": {
-            "logger_time": 1645297763940859600,
-            "session_id": "2d7a8321-e2c4-47f9-ad02-017f1371ca73",
-            "marker_type": [
-                "test_marker"
-            ],
-            "comment": "123",
+            "_id": "",
+                    "logger_time": 1645385274324741000,
+            "logger_time_string": "1645385274324741000",
+            "session_id": "43b04599-2ae0-4af9-af84-017f18a56fef",
+            "marker_type": [],
+            "comment": "",
             "marker_source": "DATA_PORTAL",
-            "created_by": "cherkavi",
-            "status": "UNCATEGORIZED"
-        }
+            "created_time": 0,
+            "created_by": "vcherkashyn",
+            "bdc_timestamp": 162202445926968,
+            "sw_version": "3.4.33",
+            "link": "",
+            "status": "UNCATEGORIZED",
+            "rowDisabled": false,
+            "dag_data": {
+                "name": "drive_markers"
+            },
+            "repro_data": {
+                "name": "original"
+            }
+        }        
     },
-    "dag_run_id": "manual_data_api_call_2022-02-20-09:26:48:1645345657"
+    "dag_run_id": "manual_data_api_call_2022-02-20-09:26:48:1645341900"
 }
