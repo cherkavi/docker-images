@@ -1,0 +1,23 @@
+FROM maprtech/pacc:6.2.0_7.0.0_ubuntu18
+
+### where will be placed MapR ticket
+ENV MAPR_TICKETFILE_LOCATION=/tmp/maprticket/CONTAINER_TICKET
+
+### python3 
+RUN apt-get update && apt-get install software-properties-common -y && add-apt-repository ppa:deadsnakes/ppa && apt-get update && apt-get install python3.8-venv -y && apt-get install vim nano curl postgresql-client -y && python3.8 -m venv /venv
+ENV PATH=/venv/bin:$PATH
+
+### drill libraries
+RUN mkdir /usr/src/lib
+COPY ./my_drill_libs /usr/src/lib
+RUN chmod -R 777 /usr/src/
+
+### jre 8
+COPY ./jre1.8.0_202 /java8
+ENV JAVA_HOME=/java8
+# RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 10
+# RUN alias java=$JAVA_HOME/bin/java
+RUN rm /usr/bin/java; ln -s $JAVA_HOME/bin/java /usr/bin/java
+
+
+ENTRYPOINT ["/opt/mapr/installer/docker/mapr-setup.sh", "container"]
