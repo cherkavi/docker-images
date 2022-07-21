@@ -19,5 +19,7 @@ ENV JAVA_HOME=/java8
 # RUN alias java=$JAVA_HOME/bin/java
 RUN rm /usr/bin/java; ln -s $JAVA_HOME/bin/java /usr/bin/java
 
-
 ENTRYPOINT ["/opt/mapr/installer/docker/mapr-setup.sh", "container"]
+
+# for hiding login/password:
+# ENTRYPOINT ["/opt/mapr/installer/docker/mapr-setup.sh container >/dev/null 2>&1"]
