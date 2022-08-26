@@ -5,6 +5,7 @@ if [ -z "$JENKINS_IMAGE_NAME" ]; then
 fi
 
 echo "using jenkins container: $JENKINS_IMAGE_NAME"
+echo "set variable JENKINS_IMAGE_NAME to override: jenkins/jenkins, jenkins-ansible"
 
 JENKINS_CONTAINER_NAME=jenkins-server
 
@@ -17,6 +18,7 @@ if [[ ${started_container} == "" ]]; then
     # /var/jenkins_home/secrets/initialAdminPassword
 else
     echo "start existing container"
+    cat data/secrets/initialAdminPassword
     docker start $JENKINS_CONTAINER_NAME
     sleep 3
     docker ps
