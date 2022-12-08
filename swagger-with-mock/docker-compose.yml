@@ -1,0 +1,16 @@
+version: '3'
+services:
+  swagger_editor:
+    image: swaggerapi/swagger-editor
+    ports:
+    - "8090:8080"    
+
+  swagger_mock:
+    image: stoplight/prism 
+    ports:
+    - "4010:4010"
+    volumes:
+    - ./dashboard.yaml:/app/config.yaml
+    entrypoint:
+        node /usr/src/prism/packages/cli/dist/index.js mock --dynamic --host 0.0.0.0 /app/config.yaml        
+    
