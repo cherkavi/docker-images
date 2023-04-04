@@ -17,6 +17,7 @@ services:
     - 3310:${MYSQL_PORT}
     volumes:
     - ./mysqldata:/var/lib/mysql
+    - ./scripts:/home/scripts
 
   mysql_admin:
     image: adminer
