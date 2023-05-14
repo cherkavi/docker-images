@@ -1,6 +1,16 @@
 tag:ssh  
 
 # ssh server
+## using existing in docker hub
+```sh
+docker run atlassian/ssh-ubuntu:0.2.2
+SSH_HOST=`docker inspect $(docker ps | grep ssh-ubuntu | awk '{print $1}')  | jq -r .[0].NetworkSettings.IPAddress`
+
+# password: root
+ssh root@$SSH_HOST
+```
+
+
 ## start local ssh server
 ```sh
 ./ssh-image.sh
