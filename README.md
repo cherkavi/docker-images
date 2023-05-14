@@ -1,4 +1,11 @@
-[docker hub](https://hub.docker.com/search?q=&type=image)
+[docker hub](https://hub.docker.com/search?q=&type=image)  
+search in docker hub for a 'ssh'  
+```sh
+SEARCH_CRITERIA=ssh
+docker search $SEARCH_CRITERIA
+docker search --filter=stars=3 --no-trunc $SEARCH_CRITERIA
+docker search --format "{{.Name}}: {{.StarCount}}" $SEARCH_CRITERIA
+```
 
 # for using predefined scripts in documentation properties
 update your ".bashrc" with next aliases   
