@@ -25,6 +25,6 @@ x-www-browser localhost:9090
 
 ## alerts + prometheus + grafana run 
 part of the architecture:
-![architecture](https://cdn.rawgit.com/prometheus/prometheus/e761f0d/documentation/images/architecture.svg)
+![architecture](https://github.com/cherkavi/docker-images/assets/8113355/2dd80a65-1400-44f1-8e58-5432bd9e55ab)
 ```
 ```
