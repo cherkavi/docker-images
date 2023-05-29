@@ -13,7 +13,7 @@ DOCKER_NAME=prometheus
 docker rm $DOCKER_NAME
 docker run \
         -p 9090:9090 \
-	-v `pwd dirname $0`/config/prometheus.yml:/etc/prometheus/prometheus.yml  \
+	-v `pwd dirname $0`/config/prometheus-simple.yml:/etc/prometheus/prometheus.yml  \
 	-v `pwd dirname $0`/data:/usr/local/var/prometheus:rw \
 	--name $DOCKER_NAME \
 	prom/prometheus \
@@ -23,8 +23,12 @@ docker run \
 x-www-browser localhost:9090
 ```
 
-## alerts + prometheus + grafana run 
-part of the architecture:
+## alerts + prometheus + grafana 
 ![architecture](https://github.com/cherkavi/docker-images/assets/8113355/2dd80a65-1400-44f1-8e58-5432bd9e55ab)
+```sh
+docker-compose -f docker-compose-prometheus-alerts-grafana.yaml up
+# docker-compose -f docker-compose-prometheus-alerts-grafana.yaml down
 ```
-```
+[Grafana](http://localhost:3000/) - admin/admin  
+[Prometheus](http://localhost:9090/)  
+[AlertManager](http://localhost:9093/)  

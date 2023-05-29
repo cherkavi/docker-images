@@ -1,0 +1,48 @@
+version: '3'
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+
+services:
+
+  alertmanager:
+    container_name: alertmanager
+    hostname: alertmanager
+    image: prom/alertmanager
+    volumes:
+      - $PWD/config/alertmanager.conf:/etc/alertmanager/alertmanager.conf
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.conf'
+    ports:
+      - 9093:9093
+
+  prometheus:
+    container_name: prometheus
+    hostname: prometheus
+    image: prom/prometheus
+    volumes:
+      - $PWD/config/alert_rules.yml:/etc/prometheus/alert_rules.yml
+      - $PWD/config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    links:
+      - alertmanager:alertmanager
+    ports:
+      - 9090:9090
+    depends_on:
+      - alertmanager
+
+  grafana:
+    container_name: grafana
+    hostname: grafana
+    image: grafana/grafana
+    volumes:
+      - $PWD/config/grafana_datasources.yml:/etc/grafana/provisioning/datasources/all.yaml
+      - $PWD/config/grafana_config.ini:/etc/grafana/config.ini
+      - grafana_data:/var/lib/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus

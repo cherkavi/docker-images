@@ -1,15 +1,24 @@
-# https://prometheus.io/docs/prometheus/latest/getting_started/
+# global settings
 global:
-    scrape_interval: 5s
-    external_labels:
-        monitor: 'test-monitor'
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets: ["alertmanager:9093"]
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - /etc/prometheus/alert_rules.yml
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
 scrape_configs:
-  - job_name: 'prometheus'
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'vad-metrics'
+    metrics_path: '/metrics'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9090'] 
-
-#  - job_name: 'node'
-#    scrape_interval: 5s
-#    static_configs:
-#      - targets: ['your_server_ip:9100']        
+      - targets: ['docker.for.mac.host.internal:9091']
