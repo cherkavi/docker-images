@@ -2,7 +2,7 @@ tag:tool
 tag:metrics  
 
 # Prometheus
-
+## [manual installation](https://codewizardly.com/prometheus-on-aws-ec2-part1/)
 ## prometheus run with embedded TSDB and custom configuration
 ```sh
 mkdir data
@@ -32,3 +32,15 @@ docker-compose -f docker-compose-prometheus-alerts-grafana.yaml up
 [Grafana](http://localhost:3000/) - admin/admin  
 [Prometheus](http://localhost:9090/)  
 [AlertManager](http://localhost:9093/)  
+
+## [prometheus node exporter](https://prometheus.io/docs/guides/node-exporter/)
+prometheus is working in pull mode, that means 
+observed system should emit http-endpoint on some port
+```sh
+docker run -d \
+  --net="host" \
+  --pid="host" \
+  -v "/:/host:ro,rslave" \
+  quay.io/prometheus/node-exporter:latest \
+  --path.rootfs=/host
+```
