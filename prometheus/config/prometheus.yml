@@ -22,3 +22,17 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['docker.for.mac.host.internal:9091']
+      
+#  - job_name: another_example_node_exporter
+#    static_configs:
+#      - targets: ['ec2-100-25-25-25.compute-1.amazonws.com:9100']
+#      
+#  - job_name: 'ec2_instances_discovery'
+#    ec2_sd_configs:
+#      - region: 'us-east-1'
+#        access_key: 'YOUR_ACCESS_KEY'
+#        secret_key: 'YOUR_SECRET_KEY'
+#        port: 9100  
+#    relabel_configs:
+#      - source_labels: [__meta_ec2_tag_Name]
+#        target_label: instance_name  # Add a custom label 'instance_name' using the EC2 tag 'Name'
