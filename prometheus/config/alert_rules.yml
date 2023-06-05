@@ -2,12 +2,15 @@ groups:
   - name: JVMMemory 
     rules:
       - alert: JVMMemoryThresholdCrossed
-        # Condition for alerting
+        ## Condition for alerting
+        # node_memory_MemFree_bytes < 9000000
         expr: jvm_memory_committed_bytes{region="heap"}/jvm_memory_max_bytes{region="heap"} > 0.8
+        # how long this condition should be in place 
+        for: 1m
         # Annotation - additional informational labels to store more information
         annotations:
-          title: 'Instance  has crossed 80% heap memory usage'
-          description: ' of job  has crossed 80% heap memory usage'
+          title: 'Instance: {{ $labels.instance }} has crossed 80% heap memory usage'
+          description: 'job: {{ $labels.job }}'
         # Labels - additional labels to be attached to the alert
         labels:
           severity: 'critical'
