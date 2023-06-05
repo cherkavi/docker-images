@@ -6,6 +6,7 @@ tag:metrics
 * [prometheus manual installation](https://codewizardly.com/prometheus-on-aws-ec2-part1/)
 * [prometheus ecosystem download](https://prometheus.io/download/)
 * [PromQL - prometheus queries](https://prometheus.io/docs/prometheus/latest/querying/examples/)
+* [PromQL cli tool](https://github.com/nalbury/promql-cli)
 
 ## prometheus run with embedded TSDB and custom configuration
 ```sh
@@ -33,8 +34,9 @@ x-www-browser localhost:9090
 docker-compose -f docker-compose-prometheus-alerts-grafana.yaml up
 # docker-compose -f docker-compose-prometheus-alerts-grafana.yaml down
 ```
+
 ### [Grafana](http://localhost:3000/) - admin/admin  
-### [Prometheus](http://localhost:9090/)  
+### [Prometheus](http://localhost:9090/graph)  
 [configuration for prometheus](https://prometheus.io/docs/prometheus/latest/getting_started/)
 ```sh
 prom/prometheus \
@@ -57,3 +59,5 @@ docker run -d \
   quay.io/prometheus/node-exporter:latest \
   --path.rootfs=/host
 ```
+
+## [prometheus push gateway ( metrics listener )](https://github.com/prometheus/pushgateway)
