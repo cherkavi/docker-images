@@ -3,7 +3,8 @@ tag:metrics
 
 # Prometheus
 ## Links
-* [manual installation](https://codewizardly.com/prometheus-on-aws-ec2-part1/)
+* [prometheus manual installation](https://codewizardly.com/prometheus-on-aws-ec2-part1/)
+* [prometheus ecosystem download](https://prometheus.io/download/)
 * [PromQL - prometheus queries](https://prometheus.io/docs/prometheus/latest/querying/examples/)
 
 ## prometheus run with embedded TSDB and custom configuration
@@ -32,9 +33,18 @@ x-www-browser localhost:9090
 docker-compose -f docker-compose-prometheus-alerts-grafana.yaml up
 # docker-compose -f docker-compose-prometheus-alerts-grafana.yaml down
 ```
-[Grafana](http://localhost:3000/) - admin/admin  
-[Prometheus](http://localhost:9090/)  
-[AlertManager](http://localhost:9093/)  
+### [Grafana](http://localhost:3000/) - admin/admin  
+### [Prometheus](http://localhost:9090/)  
+[configuration for prometheus](https://prometheus.io/docs/prometheus/latest/getting_started/)
+```sh
+prom/prometheus \
+  --config.file=/etc/prometheus/prometheus.yml \
+  --storage.tsdb.path=/usr/local/var/prometheus
+```
+### [AlertManager](http://localhost:9093/)  
+```sh
+./alertmanager --config.file=alertmanager.yml
+```
 
 ## [prometheus node exporter](https://prometheus.io/docs/guides/node-exporter/)
 prometheus is working in pull mode, that means 
