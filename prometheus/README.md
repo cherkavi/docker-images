@@ -4,7 +4,7 @@ tag:metrics
 # Prometheus
 ## Links
 * [manual installation](https://codewizardly.com/prometheus-on-aws-ec2-part1/)
-* [prometheus queries](https://prometheus.io/docs/prometheus/latest/querying/examples/)
+* [PromQL - prometheus queries](https://prometheus.io/docs/prometheus/latest/querying/examples/)
 
 ## prometheus run with embedded TSDB and custom configuration
 ```sh
