@@ -44,6 +44,7 @@ prom/prometheus \
   --storage.tsdb.path=/usr/local/var/prometheus
 ```
 ### [AlertManager](http://localhost:9093/)  
+#### [alertmanager installation](https://codewizardly.com/prometheus-on-aws-ec2-part4/)
 ```sh
 ./alertmanager --config.file=alertmanager.yml
 ```
