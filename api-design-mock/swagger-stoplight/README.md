@@ -3,6 +3,7 @@ tag:tool
 tag:generator  
 
 # API designer, mock, generator
+[real example](https://github.com/cherkavi/solutions/tree/master/swagger-generate-mock/)
 
 ## API designer
 ### [Swagger editor](https://swagger.io/)
