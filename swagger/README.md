@@ -2,8 +2,12 @@ tag:code
 tag:tool  
 tag:generator  
 
-## run editor
-https://github.com/swagger-api/swagger-editor
+# [Swagger editor](https://swagger.io/)
+
+## [open source tools](https://swagger.io/tools/open-source/)
+
+
+## [run editor](https://github.com/swagger-api/swagger-editor)
 ```sh
 docker pull swaggerapi/swagger-editor
 docker run -d -p 8090:8080 swaggerapi/swagger-editor
