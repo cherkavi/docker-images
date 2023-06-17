@@ -2,25 +2,36 @@ tag:code
 tag:tool  
 tag:generator  
 
-# [Swagger editor](https://swagger.io/)
+# API designer, mock, generator
 
-## [open source tools](https://swagger.io/tools/open-source/)
-## [run editor](https://github.com/swagger-api/swagger-editor)
+## API designer
+### [Swagger editor](https://swagger.io/)
+* [open source tools](https://swagger.io/tools/open-source/)
+* [run editor](https://github.com/swagger-api/swagger-editor)
+* run editor in docker 
 ```sh
 docker pull swaggerapi/swagger-editor
 docker run -d -p 8090:8080 swaggerapi/swagger-editor
 ```
-swagger editor it is just a [JavaScript UI application](https://editor.swagger.io/)
+```sh
+x-www-browser http://localhost:8090/
+# File-> Import File
+```
+swagger editor it is just a [JavaScript UI application](https://editor.swagger.io/)  
+[examples ready to be used](https://app.swaggerhub.com/)
 
-## [alternative api online designer](https://stoplight.io/studio/)
-## [alternative api online designer](https://www.apicur.io/)
+### [stoplight api online designer](https://stoplight.io/studio/)
+* [stoplight studio how to use](https://www.youtube.com/watch?v=sC6j55_Pn5g)
+### [alternative api online designer](https://www.apicur.io/)
+start apicur locally
 ```sh
 git clone https://github.com/Apicurio/apicurio-studio.git
 cd apicurio-studio/distro/docker-compose
 cat Readme.md
 ```
 
-## run mock
+## Mock server
+### run mock server based on api designer output locally
 ```sh
 docker rm openapi-mock
 docker run -it \
@@ -30,9 +41,13 @@ docker run -it \
     stoplight/prism \
     mock --dynamic --host 0.0.0.0 /app/config.yaml
 ```
-
-
-## [examples ready to be used](https://app.swaggerhub.com/)
+### Designer API + UI Developer start locally
+```bash
+# start both containers
+docker-compose -f docker-compose.yml up
+# stop both containers
+docker-compose -f docker-compose.yml down
+```
 
 ## [run codegenerator](https://github.com/swagger-api/swagger-codegen)
 ### documentation
@@ -73,7 +88,7 @@ java -jar -DdebugOperations swagger-codegen-cli-2.2.1.jar generate \
 * DbrowserClient=false 
 
 
-### docker container
+### codegenerator docker container
 ```sh
 # pull prepared docker image
 docker pull swaggerapi/swagger-codegen-cli
