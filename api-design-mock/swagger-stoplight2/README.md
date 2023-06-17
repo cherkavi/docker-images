@@ -1,17 +1,16 @@
 # Swagger component
 [how to use swagger](https://swagger.io/tools/open-source/getting-started/)
 
-## Designer API + UI Developer
+## Designer API + UI Developer start locally
 ```bash
-# move into subfolder 
-cd collaboration
 # start both containers
-docker-compose up
+docker-compose -f docker-compose.yml up
 # stop both containers
-docker-compose down
+docker-compose -f docker-compose.yml down
 ```
 
 ## Designer API
+### start in docker container locally
 ```bash
 # start swagger editor locally
 docker run -d -p 8090:8080 swaggerapi/swagger-editor
@@ -20,7 +19,7 @@ x-www-browser http://localhost:8090/
 ```
 
 
-## UI Developer
+## Server mock start
 ```bash
 # change path according your local repo
 PATH_TO_HLM_REPO="/home/projects/law-marketing/hlm-mono-repo"

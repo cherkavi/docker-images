@@ -5,8 +5,6 @@ tag:generator
 # [Swagger editor](https://swagger.io/)
 
 ## [open source tools](https://swagger.io/tools/open-source/)
-
-
 ## [run editor](https://github.com/swagger-api/swagger-editor)
 ```sh
 docker pull swaggerapi/swagger-editor
@@ -14,9 +12,8 @@ docker run -d -p 8090:8080 swaggerapi/swagger-editor
 ```
 swagger editor it is just a [JavaScript UI application](https://editor.swagger.io/)
 
-## [alternative web designer](https://stoplight.io/studio/)
-
-## [alternative designer](https://www.apicur.io/)
+## [alternative api online designer](https://stoplight.io/studio/)
+## [alternative api online designer](https://www.apicur.io/)
 ```sh
 git clone https://github.com/Apicurio/apicurio-studio.git
 cd apicurio-studio/distro/docker-compose
@@ -35,7 +32,7 @@ docker run -it \
 ```
 
 
-## [ready examples](https://app.swaggerhub.com/)
+## [examples ready to be used](https://app.swaggerhub.com/)
 
 ## [run codegenerator](https://github.com/swagger-api/swagger-codegen)
 ### documentation

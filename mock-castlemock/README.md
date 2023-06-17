@@ -1,6 +1,11 @@
 # [Castlemock](https://github.com/castlemock#docker)
-## links
-* [documentation](https://github.com/castlemock/castlemock/wiki)
+> mock for api 
+
+## [Castlemock documentation](https://github.com/castlemock/castlemock/wiki)
+## create api description:
+* [api mock designer](../api-mock/README.md)
+* [swagger api mock designer](../swagger-with-mock/README.md)
+* [swagger api mock designer ](../api-design-mock/swagger-stoplight/README.md)
 
 ## start locally
 ```sh
