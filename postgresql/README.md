@@ -2,10 +2,24 @@ tag:datastorage
 tag:database  
 tag:rdbms  
 
+## postgresql 
+docker-compose.yaml file
+```yaml
+version: "3"
+services:
+  database:
+    image: "postgres"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=glee
+    ports:
+      - "5532:5432"
+```
 
-# Issues:
+## Issues:
 
-## permanent storage
+### permanent storage
 issue after attempt to start 
 ```
 EPERM: operation not permitted, utime '/bitnami/postgresql/.restored'

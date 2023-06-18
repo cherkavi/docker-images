@@ -5,6 +5,24 @@ tag:generator
 # API designer, mock, generator
 [real example](https://github.com/cherkavi/solutions/tree/master/swagger-generate-mock/)
 
+```
+                      +-------+
+                      | API +---+
+         +- - - - - - > mock+---+
+         |            |       |
++--------+------+     +-------+
+|    api      +-+
+| description   |
++------^--------+
+
+       |
+              +----------------+
+       |      | description  +---+
+       + - - -+   editor     +---+
+              |                |
+              +----------------+
+```
+
 ## API designer
 ### [Swagger editor](https://swagger.io/)
 * [open source tools](https://swagger.io/tools/open-source/)
