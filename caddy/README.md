@@ -8,15 +8,17 @@
 ```sh
 docker pull caddy
 
-sudo docker run --publish 9090:8080 caddy
-sudo docker run --publish 9090:8080 -v `pwd`:/localdata caddy caddy file-server --root /localdata --browse --listen :8080
+docker run --publish 9090:8080 caddy
+docker run --publish 9090:8080 -v `pwd`:/localdata caddy caddy file-server --root /localdata --browse --listen :8080
 ```
 run caddy with complex config file
 ```sh
-sudo docker run --publish 9090:8080 -v `pwd`:/localdata -v `pwd`/caddy.conf:/etc/caddy/Caddyfile caddy
+docker run --publish 9090:8080 -v `pwd`:/localdata -v `pwd`/caddy.conf:/etc/caddy/Caddyfile caddy
+## entry point will be:
+# caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
 ```
 
 run caddy with cors
 ```sh
-sudo docker run --publish 9090:8080 -v `pwd`:/localdata -v `pwd`/caddy-cors.conf:/etc/caddy/Caddyfile caddy
+docker run --publish 9090:8080 -v `pwd`:/localdata -v `pwd`/caddy-cors.conf:/etc/caddy/Caddyfile caddy
 ```
