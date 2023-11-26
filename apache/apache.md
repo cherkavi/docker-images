@@ -1,5 +1,8 @@
 # Apache 
 
+## links
+[alternative solution: file server, http server for folder, local server](https://github.com/cherkavi/python-utilities/blob/master/http/http-server-start.md)
+
 ## start apache and point out to current folder
 ### create index file
 ```sh
