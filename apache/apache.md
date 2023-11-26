@@ -1,7 +1,9 @@
 # Apache 
 
 ## links
-[alternative solution: file server, http server for folder, local server](https://github.com/cherkavi/python-utilities/blob/master/http/http-server-start.md)
+* [alternative solution: file server, http server for folder, local server](https://github.com/cherkavi/python-utilities/blob/master/http/http-server-start.md)
+
+* `npm install --global http-server; http-server --port 9090`
 
 ## start apache and point out to current folder
 ### create index file
