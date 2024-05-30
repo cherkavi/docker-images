@@ -39,7 +39,8 @@ docker-compose down
 ls -la data/slapd/database
 ```
 
-## web UI 
+## access
+### web UI 
 ```sh
 x-www-browser 127.0.0.1:80
 # login: cn=admin,dc=vantage,dc=com
@@ -48,7 +49,7 @@ x-www-browser 127.0.0.1:80
 # import: for-import.ldif
 ```
 
-## ports
+### command line
 ```sh
 LDAP_HOST="ldap://localhost"
 BASE_DN="dc=vantage,dc=com"
