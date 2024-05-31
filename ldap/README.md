@@ -6,16 +6,19 @@
 [java spring example](https://spring.io/guides/gs/authenticating-ldap/)
 
 ## application managing
-### start application
+### installation
 ```sh
 # check access to containers
 docker pull osixia/openldap:latest
 docker pull osixia/phpldapadmin:latest
-
 sudo apt install ldap-utils
+```
 
+### start application
+```sh
 docker-compose -f docker-compose.yaml up
 ```
+
 ### check: two containers should be started
 ```sh
 docker ps | awk '{print $NF}' 
@@ -23,7 +26,6 @@ docker ps | awk '{print $NF}'
 # phpldapadmin
 # openldap
 ```
-
 if openldap didn't start - clear internal data
 ```sh
 sudo rm -rf data
@@ -69,4 +71,8 @@ ldapsearch -LLL -o ldif-wrap=no -H $LDAP_HOST -D "$LDAP_USER" -w "$LDAP_PASSWORD
 ldapsearch -LLL -o ldif-wrap=no -H $LDAP_HOST -D "$LDAP_USER" -w "$LDAP_PASSWORD" -b "ou=people,dc=vantage,dc=com" "(cn=mouse, jerry)"
 ```
 
+### [python application ](https://github.com/cherkavi/python-utilities/tree/master/ldap)
+```sh
+python3 ldap-search.py
+```
 
