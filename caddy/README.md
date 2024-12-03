@@ -22,3 +22,8 @@ run caddy with cors
 ```sh
 docker run --publish 9090:8080 -v `pwd`:/localdata -v `pwd`/caddy-cors.conf:/etc/caddy/Caddyfile caddy
 ```
+
+## caddy hash password
+```sh
+docker run --rm caddy caddy hash-password --plaintext my_secret_password
+```

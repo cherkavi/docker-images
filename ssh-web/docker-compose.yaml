@@ -1,0 +1,60 @@
+version:  "3.8"
+services:
+
+  ssh-server:
+    image: lscr.io/linuxserver/openssh-server
+    container_name: ssh-server
+    hostname: ssh-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - PASSWORD_ACCESS=true
+      - USER_NAME=${SSH_USER}
+      - USER_PASSWORD=${SSH_PASSWORD}
+    networks:
+      - webssh_network
+    volumes:
+      - ./config:/config
+    restart: unless-stopped
+
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:ci-alpine
+    container_name: reverse-proxy
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - CADDY_INGRESS_NETWORKS=webssh_network
+    networks:
+      - webssh_network
+    volumes:
+      # need to try without it
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+    restart: unless-stopped
+
+  wetty:
+    image: wettyoss/wetty
+    container_name: wetty
+    labels:
+      caddy: ssh.tmplinux.com
+      caddy.basicauth: /*
+      caddy.basicauth.bobby: ${CADDY_PASSWORD}
+      caddy.reverse_proxy: "{{upstreams 3000}}"
+    environment:
+      - SSHHOST=ssh-server
+      - SSHPORT=2222
+      - SSHUSER=${SSH_USER}
+    networks:
+      - webssh_network
+    restart: unless-stopped
+    depends_on:
+      - ssh-server
+
+
+volumes:
+  caddy_data: {}
+
+networks:
+  webssh_network:
+    external: true
