@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="ExampleProject" resourceRoot="" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ExampleServiceSoapBinding" type="wsdl" bindingName="{http://example.com/}ExampleServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://example.com/ExampleService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart="http://example.com/ExampleService?wsdl">
+      <con:part><![CDATA[<wsdl:definitions name="ExampleService" targetNamespace="http://example.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://example.com/">
+      <xsd:element name="ExampleRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="input" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExampleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="output" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ExampleRequest">
+    <wsdl:part name="parameters" element="tns:ExampleRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ExampleResponse">
+    <wsdl:part name="parameters" element="tns:ExampleResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ExampleService">
+    <wsdl:operation name="ExampleOperation">
+      <wsdl:input message="tns:ExampleRequest"/>
+      <wsdl:output message="tns:ExampleResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExampleServiceSoapBinding" type="tns:ExampleService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ExampleOperation">
+      <soap:operation soapAction="http://example.com/ExampleOperation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExampleService">
+    <wsdl:port name="ExampleServiceSoapBinding" binding="tns:ExampleServiceSoapBinding">
+      <soap:address location="http://example.com/ExampleService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:part>
+    </con:definitionCache>
+    <con:endpoints>
+      <con:endpoint>http://example.com/ExampleService</con:endpoint>
+    </con:endpoints>
+    <con:operation name="ExampleOperation" bindingOperationName="ExampleOperation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+      <con:settings/>
+      <con:call name="Request 1">
+        <con:settings/>
+        <con:encoding>UTF-8</con:encoding>
+        <con:endpoint>http://example.com/ExampleService</con:endpoint>
+        <con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://example.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <exam:ExampleRequest>
+         <exam:input>Test Input</exam:input>
+      </exam:ExampleRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request>
+        <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/ExampleOperation"/>
+      </con:call>
+    </con:operation>
+  </con:interface>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:sensitiveInformation/>
+</con:soapui-project>
