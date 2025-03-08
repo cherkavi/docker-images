@@ -20,6 +20,24 @@ services:
       - elasticsearch
     networks:
       - elk
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.16.5
+    container_name: logstash
+    ports:
+      - 5044:5044 # Example: Beats input
+      - 9300:9300 # Logstash monitoring API
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline # Mount your Logstash pipeline configuration
+      - ./logstash/config:/usr/share/logstash/config # Mount your Logstash configuration
+    environment:
+      - LS_JAVA_OPTS=-Xms512m -Xmx512m # Adjust memory as needed
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk
+
 networks:
   elk:
     driver: bridge
