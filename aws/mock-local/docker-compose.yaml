@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - DEFAULT_REGION=eu-central-1
+      - SERVICES=sqs,s3      
+    volumes:
+      - "./init-scripts:/etc/localstack/init/ready.d"
