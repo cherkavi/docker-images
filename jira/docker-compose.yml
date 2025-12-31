@@ -1,0 +1,45 @@
+# docker-compose up
+# x-www-browser localhost:8080
+# Database Type: PostgreSQL
+# Hostname: db
+# Port: 5432
+# Database: jiradb
+# Username: jira
+# Password: jellyfish
+#
+version: '3.8'
+services:
+  jira:
+    image: atlassian/jira-software:latest
+    container_name: jira-local
+    ports:
+      - "8080:8080"
+    environment:
+      - ATL_JDBC_URL=jdbc:postgresql://db:5432/jiradb
+      - ATL_JDBC_USER=jira
+      - ATL_JDBC_PASSWORD=jellyfish
+      - ATL_DB_TYPE=postgres72
+      ######################################################
+      - JIRA_SETUP_ADMIN_USERNAME=admin
+      - JIRA_SETUP_ADMIN_USER_PASSWORD=YourSecurePassword123
+      - JIRA_SETUP_ADMIN_USER_EMAIL=admin@example.com
+      - JIRA_SETUP_ADMIN_USER_FULLNAME=Jira Admin
+      - JIRA_SETUP_LICENSE=YOUR_LICENSE_KEY_HERE 
+    volumes:
+      - jira-data:/var/atlassian/application-data/jira
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    container_name: jira-db
+    environment:
+      - POSTGRES_USER=jira
+      - POSTGRES_PASSWORD=jellyfish
+      - POSTGRES_DB=jiradb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  jira-data:
+  db-data:
